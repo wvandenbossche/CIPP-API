@@ -1,0 +1,24 @@
+{
+  "name": "CUBE - Minimal baseline - Table view",
+  "style": "Table",
+  "Fields": [
+    {
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "MFA Registration Campaign Enabled",
+          "value": "MFANudgeState",
+          "formatter": "bool"
+        }
+      ],
+      "name": "MFANudgeState",
+      "API": "Graph",
+      "URL": "https://graph.microsoft.com/beta/policies/authenticationMethodsPolicy",
+      "ExtractFields": [
+        "registrationEnforcement"
+      ],
+      "StoreAs": "bool",
+      "where": "$_.registrationEnforcement.authenticationMethodsRegistrationCampaign.state -eq 'Enabled'"
+    }
+  ]
+}
