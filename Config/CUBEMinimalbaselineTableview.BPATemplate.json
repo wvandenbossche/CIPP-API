@@ -30,6 +30,9 @@
         "maxScore",
         "averageComparativeScores"
       ],
+      "parameters": {
+        "asApp": false
+      },
       "URL": "https://graph.microsoft.com/beta/security/secureScores?$top=1"
     },
     {
