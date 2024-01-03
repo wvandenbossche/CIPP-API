@@ -31,6 +31,18 @@
         "averageComparativeScores"
       ],
       "URL": "https://graph.microsoft.com/beta/security/secureScores?$top=1"
+    },
+    {
+      "name": "DisableSecurityGroupUsers",
+      "UseExistingInfo": true,
+      "FrontendFields": [
+        {
+          "name": "DisableSecurityGroupUsers",
+          "value": "DisableSecurityGroupUsers",
+          "formatter": "bool"
+        }
+      ],
+      "desc": "DisableSecurityGroupUsers"
     }
   ]
 }
