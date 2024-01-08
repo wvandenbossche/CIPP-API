@@ -1,7 +1,9 @@
 {
+  "name": "Cube Minimal Baseline",
   "style": "Table",
   "Fields": [
     {
+      "name": "SharepointSettings",
       "UseExistingInfo": false,
       "FrontendFields": [
         {
@@ -15,18 +17,24 @@
           "formatter": "warnBool"
         }
       ],
-      "name": "SharepointSettings",
+      "StoreAs": "JSON",
       "API": "Graph",
-      "URL": "https://graph.microsoft.com/beta/admin/sharepoint/settings",
-      "Parameters": {
-        "asApp": "True"
-      },
       "ExtractFields": [
         "sharingCapability",
         "isMacSyncAppEnabled"
       ],
-      "StoreAs": "JSON"
+      "URL": "https://graph.microsoft.com/beta/admin/sharepoint/settings"
+    },
+    {
+      "name": "AuditLog",
+      "UseExistingInfo": true,
+      "FrontendFields": [
+        {
+          "name": "AuditLog",
+          "value": "AuditLog",
+          "formatter": "bool"
+        }
+      ]
     }
-  ],
-  "name": "Cube Minimal Baseline"
+  ]
 }
