@@ -1,0 +1,138 @@
+{
+  "name": "Cube Minimal Baseline v1.0 - Table view",
+  "style": "Table",
+  "Fields": [
+    {
+      "name": "PasswordNeverExpires",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Password Never Expires",
+          "value": "PasswordNeverExpires",
+          "formatter": "bool"
+        }
+      ],
+      "desc": "Disables the expiration of passwords for the tenant by setting the password expiration policy to never expire for any user.",
+      "where": "$_.passwordValidityPeriodInDays -eq 2147483647",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "passwordValidityPeriodInDays"
+      ],
+      "URL": "https://graph.microsoft.com/beta/domains"
+    },
+    {
+      "name": "OAuthAppConsent",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "OAuth App Consent",
+          "value": "OAuthAppConsent",
+          "formatter": "bool"
+        }
+      ],
+      "desc": "Disables users from being able to consent to applications",
+      "where": "'ManagePermissionGrantsForSelf.microsoft-user-default-legacy' -notin $_.defaultuserrolepermissions.permissionGrantPoliciesAssigned",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "defaultuserrolepermissions"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/authorizationPolicy?$select=defaultUserRolePermissions"
+    },
+    {
+      "name": "UnifiedAuditLog",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Unified Audit Log",
+          "value": "UnifiedAuditLog",
+          "formatter": "bool"
+        }
+      ],
+      "desc": "Enables the Unified Audit Log for tracking and auditing activities.",
+      "StoreAs": "bool",
+      "API": "Exchange",
+      "ExtractFields": [
+        "UnifiedAuditLogIngestionEnabled"
+      ],
+      "Command": "Get-AdminAuditLogConfig"
+    },
+    {
+      "name": "MFANudgeState",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "MFA Registration Campaign Enabled",
+          "value": "MFANudgeState",
+          "formatter": "bool"
+        }
+      ],
+      "desc": "Sets the state of the registration campaign for the tenant",
+      "where": "$_.registrationEnforcement.authenticationMethodsRegistrationCampaign.state -eq 'Enabled'",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "registrationEnforcement"
+      ],
+      "URL": "https://graph.microsoft.com/beta/policies/authenticationMethodsPolicy"
+    },
+    {
+      "name": "SecureDefaultState",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Secure Defaults State Enabled",
+          "value": "SecureDefaultState",
+          "formatter": "warnBool"
+        }
+      ],
+      "desc": "Enables security defaults for the tenant, for newer tenants this is enabled by default.",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "IsEnabled"
+      ],
+      "URL": "https://graph.microsoft.com/beta/policies/identitySecurityDefaultsEnforcementPolicy"
+    },
+    {
+      "name": "AnonymousPrivacyReports",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Anonymous Privacy Reports",
+          "value": "AnonymousPrivacyReports",
+          "formatter": "reverseBool"
+        }
+      ],
+      "desc": "Shows usernames instead of pseudo anonymised names in reports.",
+      "where": "$_.displayConcealedNames -eq $false",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "displayConcealedNames"
+      ],
+      "URL": "https://graph.microsoft.com/beta/admin/reportSettings"
+    },
+    {
+      "name": "MessageCopyforSentAsDisabled",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Message Copy for Sent-As Disabled",
+          "value": "MessageCopyforSentAsDisabled",
+          "formatter": "table"
+        }
+      ],
+      "desc": "Sets emails sent as and on behalf of shared mailboxes to also be stored in the shared mailbox sent items folder",
+      "where": "$_.MessageCopyForSentAsEnabled -eq $false",
+      "StoreAs": "JSON",
+      "API": "Exchange",
+      "ExtractFields": [
+        "userprincipalname",
+        "messageCopyForSentAsEnabled"
+      ],
+      "Command": "Get-Mailbox"
+    }
+  ]
+}
