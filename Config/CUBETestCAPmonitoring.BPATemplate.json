@@ -3,6 +3,7 @@
   "style": "Table",
   "Fields": [
     {
+      "name": "cubeCAPexist",
       "UseExistingInfo": false,
       "FrontendFields": [
         {
@@ -11,16 +12,16 @@
           "formatter": "bool"
         }
       ],
-      "name": "cubeCAPexist",
+      "where": "'VPN: Require MFA outside the office' -in $_.displayName",
+      "StoreAs": "bool",
       "API": "Graph",
-      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies",
       "ExtractFields": [
-        "Value"
+        "displayName"
       ],
-      "where": "displayName eq 'VPN: Require MFA outside the office'",
-      "StoreAs": "bool"
+      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies"
     },
     {
+      "name": "cubeMFAenabled",
       "UseExistingInfo": false,
       "FrontendFields": [
         {
@@ -29,14 +30,14 @@
           "formatter": "bool"
         }
       ],
-      "name": "cubeMFAenabled",
+      "where": "$_.state -eq 'enabled'",
+      "StoreAs": "bool",
       "API": "Graph",
-      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies",
       "ExtractFields": [
-        "Value"
+        "displayName",
+        "state"
       ],
-      "where": "displayName eq 'VPN: Require MFA outside the office' | where state eq 'enabled'",
-      "StoreAs": "bool"
+      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=displayName eq 'All apps: Require MFA outside the office'"
     }
   ]
 }
