@@ -1,0 +1,42 @@
+{
+  "name": "CUBE - Test CAP monitoring",
+  "style": "Table",
+  "Fields": [
+    {
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Cube CAP rules exist",
+          "value": "cubeCAPexist",
+          "formatter": "bool"
+        }
+      ],
+      "name": "cubeCAPexist",
+      "API": "Graph",
+      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies",
+      "ExtractFields": [
+        "Value"
+      ],
+      "where": "displayName eq 'VPN: Require MFA outside the office'",
+      "StoreAs": "bool"
+    },
+    {
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Cube CAP MFA enabled",
+          "value": "cubeMFAenabled",
+          "formatter": "bool"
+        }
+      ],
+      "name": "cubeMFAenabled",
+      "API": "Graph",
+      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies",
+      "ExtractFields": [
+        "Value"
+      ],
+      "where": "displayName eq 'VPN: Require MFA outside the office' | where state eq 'enabled'",
+      "StoreAs": "bool"
+    }
+  ]
+}
