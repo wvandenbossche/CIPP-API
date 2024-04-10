@@ -34,7 +34,6 @@
       "StoreAs": "bool",
       "API": "Graph",
       "ExtractFields": [
-        "displayName",
         "state"
       ],
       "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=displayName eq 'All apps: Require MFA outside the office'"
