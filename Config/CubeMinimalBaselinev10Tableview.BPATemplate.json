@@ -22,6 +22,42 @@
       "URL": "https://graph.microsoft.com/beta/domains"
     },
     {
+      "name": "cubeCAPexist",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Cube CAP rules exist",
+          "value": "cubeCAPexist",
+          "formatter": "bool"
+        }
+      ],
+      "where": "$_.displayName -ne $null",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "displayName"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=displayName eq 'All apps: Require MFA outside the office'"
+    },
+    {
+      "name": "cubeMFAenabled",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Cube CAP MFA enabled",
+          "value": "cubeMFAenabled",
+          "formatter": "bool"
+        }
+      ],
+      "where": "$_.state -eq 'enabled'",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "state"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=displayName eq 'All apps: Require MFA outside the office'"
+    },
+    {
       "name": "OAuthAppConsent",
       "UseExistingInfo": false,
       "FrontendFields": [
@@ -82,12 +118,13 @@
       "UseExistingInfo": false,
       "FrontendFields": [
         {
-          "name": "Secure Defaults State Enabled",
+          "name": "Secure Defaults State Disabled",
           "value": "SecureDefaultState",
           "formatter": "bool"
         }
       ],
       "desc": "Enables security defaults for the tenant, for newer tenants this is enabled by default.",
+      "where": "$_.IsEnabled -eq $false",
       "StoreAs": "bool",
       "API": "Graph",
       "ExtractFields": [
