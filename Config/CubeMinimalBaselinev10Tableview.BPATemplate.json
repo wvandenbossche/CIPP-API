@@ -26,7 +26,7 @@
       "UseExistingInfo": false,
       "FrontendFields": [
         {
-          "name": "OAuth App Consent",
+          "name": "Disable user app registration",
           "value": "OAuthAppConsent",
           "formatter": "bool"
         }
@@ -133,6 +133,60 @@
         "messageCopyForSentAsEnabled"
       ],
       "Command": "Get-Mailbox"
+    },
+    {
+      "name": "allowedToCreateTenants",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Disabled tenant creation",
+          "value": "allowedToCreateTenants",
+          "formatter": "bool"
+        }
+      ],
+      "where": "$_.allowedToCreateTenants -eq $false",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "allowedToCreateTenants"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/authorizationPolicy?$select=defaultUserRolePermissions"
+    },
+    {
+      "name": "allowedToCreateSecurityGroups",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Disabled SG creation",
+          "value": "allowedToCreateSecurityGroups",
+          "formatter": "bool"
+        }
+      ],
+      "where": "$_.allowedToCreateSecurityGroups -eq $false",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "allowedToCreateSecurityGroups"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/authorizationPolicy?$select=defaultUserRolePermissions"
+    },
+    {
+      "name": "adminConsentRequestPolicy",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Enable admin consent request",
+          "value": "adminConsentRequestPolicy",
+          "formatter": "bool"
+        }
+      ],
+      "where": "$_.isEnabled -eq $true",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "isEnabled"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/adminConsentRequestPolicy"
     }
   ]
 }
