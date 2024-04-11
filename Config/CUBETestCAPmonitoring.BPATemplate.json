@@ -45,9 +45,10 @@
         {
           "name": "Conditional Access Policy",
           "value": "displayName",
-          "formatter": "table"
+          "formatter": "string"
         }
       ],
+      "desc": "",
       "where": "$_.displayName -ne $null",
       "StoreAs": "JSON",
       "API": "Graph",
