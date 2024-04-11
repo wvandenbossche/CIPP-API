@@ -120,7 +120,7 @@
         {
           "name": "Security Defaults State Disabled",
           "value": "SecureDefaultState",
-          "formatter": "warnBool"
+          "formatter": "reverseBool"
         }
       ],
       "desc": "Enables security defaults for the tenant, for newer tenants this is enabled by default.",
