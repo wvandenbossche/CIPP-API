@@ -133,25 +133,6 @@
       "URL": "https://graph.microsoft.com/v1.0/policies/identitySecurityDefaultsEnforcementPolicy"
     },
     {
-      "name": "AnonymousPrivacyReports",
-      "UseExistingInfo": false,
-      "FrontendFields": [
-        {
-          "name": "Anonymous Privacy Reports",
-          "value": "AnonymousPrivacyReports",
-          "formatter": "reverseBool"
-        }
-      ],
-      "desc": "Shows usernames instead of pseudo anonymised names in reports.",
-      "where": "$_.displayConcealedNames -eq $false",
-      "StoreAs": "bool",
-      "API": "Graph",
-      "ExtractFields": [
-        "displayConcealedNames"
-      ],
-      "URL": "https://graph.microsoft.com/beta/admin/reportSettings"
-    },
-    {
       "name": "allowedToCreateTenants",
       "UseExistingInfo": false,
       "FrontendFields": [
