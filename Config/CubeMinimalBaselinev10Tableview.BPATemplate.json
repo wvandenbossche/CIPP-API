@@ -181,13 +181,13 @@
           "formatter": "bool"
         }
       ],
-      "where": "$_.defaultUserRolePermissions.allowedToCreateTenants -eq false",
+      "where": "$_.defaultUserRolePermissions.allowedToCreateTenants -eq $false",
       "StoreAs": "bool",
       "API": "Graph",
       "ExtractFields": [
         "defaultUserRolePermissions"
       ],
-      "URL": "https://graph.microsoft.com/v1.0/policies/authorizationPolicy?$select=defaultUserRolePermissions"
+      "URL": "https://graph.microsoft.com/v1.0/policies/authorizationPolicy"
     },
     {
       "name": "allowedToCreateSecurityGroups",
@@ -205,7 +205,7 @@
       "ExtractFields": [
         "defaultUserRolePermissions"
       ],
-      "URL": "https://graph.microsoft.com/v1.0/policies/authorizationPolicy?$select=defaultUserRolePermissions"
+      "URL": "https://graph.microsoft.com/v1.0/policies/authorizationPolicy"
     },
     {
       "name": "adminConsentRequestPolicy",
