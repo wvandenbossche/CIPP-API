@@ -118,7 +118,7 @@
       "UseExistingInfo": false,
       "FrontendFields": [
         {
-          "name": "Secure Defaults State Disabled",
+          "name": "Security Defaults State Disabled",
           "value": "SecureDefaultState",
           "formatter": "bool"
         }
@@ -178,10 +178,10 @@
         {
           "name": "Disabled tenant creation",
           "value": "allowedToCreateTenants",
-          "formatter": "bool"
+          "formatter": "warnBool"
         }
       ],
-      "where": "$_.allowedToCreateTenants -eq $false",
+      "where": "",
       "StoreAs": "bool",
       "API": "Graph",
       "ExtractFields": [
@@ -196,10 +196,10 @@
         {
           "name": "Disabled SG creation",
           "value": "allowedToCreateSecurityGroups",
-          "formatter": "bool"
+          "formatter": "warnBool"
         }
       ],
-      "where": "$_.allowedToCreateSecurityGroups -eq $false",
+      "where": "",
       "StoreAs": "bool",
       "API": "Graph",
       "ExtractFields": [
