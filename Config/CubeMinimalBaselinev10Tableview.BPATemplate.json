@@ -152,26 +152,6 @@
       "URL": "https://graph.microsoft.com/beta/admin/reportSettings"
     },
     {
-      "name": "MessageCopyforSentAsDisabled",
-      "UseExistingInfo": false,
-      "FrontendFields": [
-        {
-          "name": "Message Copy for Sent-As Disabled",
-          "value": "MessageCopyforSentAsDisabled",
-          "formatter": "table"
-        }
-      ],
-      "desc": "Sets emails sent as and on behalf of shared mailboxes to also be stored in the shared mailbox sent items folder",
-      "where": "$_.MessageCopyForSentAsEnabled -eq $false",
-      "StoreAs": "JSON",
-      "API": "Exchange",
-      "ExtractFields": [
-        "userprincipalname",
-        "messageCopyForSentAsEnabled"
-      ],
-      "Command": "Get-Mailbox"
-    },
-    {
       "name": "allowedToCreateTenants",
       "UseExistingInfo": false,
       "FrontendFields": [
