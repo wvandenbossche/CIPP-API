@@ -63,13 +63,13 @@
       "UseExistingInfo": false,
       "FrontendFields": [
         {
-          "name": "MFA Registration Campaign Enabled",
+          "name": "MFA Registration Campaign Disabled",
           "value": "MFANudgeState",
           "formatter": "bool"
         }
       ],
       "desc": "Sets the state of the registration campaign for the tenant",
-      "where": "$_.registrationEnforcement.authenticationMethodsRegistrationCampaign.state -eq 'Enabled'",
+      "where": "$_.registrationEnforcement.authenticationMethodsRegistrationCampaign.state -eq 'Disabled'",
       "StoreAs": "bool",
       "API": "Graph",
       "ExtractFields": [
@@ -84,7 +84,7 @@
         {
           "name": "Secure Defaults State Enabled",
           "value": "SecureDefaultState",
-          "formatter": "warnBool"
+          "formatter": "bool"
         }
       ],
       "desc": "Enables security defaults for the tenant, for newer tenants this is enabled by default.",
