@@ -37,6 +37,30 @@
         "state"
       ],
       "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=displayName eq 'All apps: Require MFA outside the office'"
+    },
+    {
+      "name": "cubeConditionalAccess",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Conditional Access Policy",
+          "value": "displayName",
+          "formatter": "table"
+        },
+        {
+          "name": "Conditional Access State",
+          "value": "state",
+          "formatter": "table"
+        }
+      ],
+      "where": "",
+      "StoreAs": "JSON",
+      "API": "Graph",
+      "ExtractFields": [
+        "displayName",
+        "state"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies"
     }
   ]
 }
