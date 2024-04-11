@@ -181,11 +181,11 @@
           "formatter": "warnBool"
         }
       ],
-      "where": "",
+      "where": "$_.defaultUserRolePermissions.allowedToCreateTenants -eq false",
       "StoreAs": "bool",
       "API": "Graph",
       "ExtractFields": [
-        "allowedToCreateTenants"
+        "defaultUserRolePermissions"
       ],
       "URL": "https://graph.microsoft.com/v1.0/policies/authorizationPolicy?$select=defaultUserRolePermissions"
     },
@@ -199,11 +199,11 @@
           "formatter": "warnBool"
         }
       ],
-      "where": "",
+      "where": "$_.defaultUserRolePermissions.allowedToCreateSecurityGroups -eq $false",
       "StoreAs": "bool",
       "API": "Graph",
       "ExtractFields": [
-        "allowedToCreateSecurityGroups"
+        "defaultUserRolePermissions"
       ],
       "URL": "https://graph.microsoft.com/v1.0/policies/authorizationPolicy?$select=defaultUserRolePermissions"
     },
