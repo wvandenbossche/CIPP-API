@@ -120,17 +120,17 @@
         {
           "name": "Security Defaults State Disabled",
           "value": "SecureDefaultState",
-          "formatter": "bool"
+          "formatter": "warnBool"
         }
       ],
       "desc": "Enables security defaults for the tenant, for newer tenants this is enabled by default.",
-      "where": "$_.IsEnabled -eq $false",
+      "where": "",
       "StoreAs": "bool",
       "API": "Graph",
       "ExtractFields": [
-        "IsEnabled"
+        "isEnabled"
       ],
-      "URL": "https://graph.microsoft.com/beta/policies/identitySecurityDefaultsEnforcementPolicy"
+      "URL": "https://graph.microsoft.com/v1.0/policies/identitySecurityDefaultsEnforcementPolicy"
     },
     {
       "name": "AnonymousPrivacyReports",
