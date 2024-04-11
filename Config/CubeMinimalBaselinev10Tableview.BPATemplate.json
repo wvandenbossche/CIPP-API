@@ -178,7 +178,7 @@
         {
           "name": "Disabled tenant creation",
           "value": "allowedToCreateTenants",
-          "formatter": "warnBool"
+          "formatter": "bool"
         }
       ],
       "where": "$_.defaultUserRolePermissions.allowedToCreateTenants -eq false",
@@ -196,7 +196,7 @@
         {
           "name": "Disabled SG creation",
           "value": "allowedToCreateSecurityGroups",
-          "formatter": "warnBool"
+          "formatter": "bool"
         }
       ],
       "where": "$_.defaultUserRolePermissions.allowedToCreateSecurityGroups -eq $false",
