@@ -58,25 +58,6 @@
       "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=displayName eq 'All apps: Require MFA outside the office'"
     },
     {
-      "name": "DetectFortiGateSAML",
-      "UseExistingInfo": false,
-      "FrontendFields": [
-        {
-          "name": "Fortigate SAML connection",
-          "value": "DetectFortiGateSAML",
-          "formatter": "bool"
-        }
-      ],
-      "desc": "Looks for a Fortigate SSLVPN service principle",
-      "where": "$_.displayName -ne $null",
-      "StoreAs": "bool",
-      "API": "Graph",
-      "ExtractFields": [
-        "displayName"
-      ],
-      "URL": "https://graph.microsoft.com/v1.0/applications?$filter=startswith(displayName,'Fortigate')"
-    },
-    {
       "name": "OAuthAppConsent",
       "UseExistingInfo": false,
       "FrontendFields": [
