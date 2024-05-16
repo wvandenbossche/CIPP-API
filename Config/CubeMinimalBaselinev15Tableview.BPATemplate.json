@@ -1,0 +1,209 @@
+{
+  "name": "Cube Minimal Baseline v1.5 - Table view",
+  "style": "Table",
+  "Fields": [
+    {
+      "name": "PasswordNeverExpires",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Password Never Expires",
+          "value": "PasswordNeverExpires",
+          "formatter": "bool"
+        }
+      ],
+      "desc": "Disables the expiration of passwords for the tenant by setting the password expiration policy to never expire for any user.",
+      "where": "$_.passwordValidityPeriodInDays -eq 2147483647",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "passwordValidityPeriodInDays"
+      ],
+      "URL": "https://graph.microsoft.com/beta/domains"
+    },
+    {
+      "name": "cubeCAPexist",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Cube CAP rules exist",
+          "value": "cubeCAPexist",
+          "formatter": "bool"
+        }
+      ],
+      "where": "$_.displayName -ne $null",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "displayName"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=displayName eq 'All apps: Require MFA outside the office'"
+    },
+    {
+      "name": "cubeMFAenabled",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Cube CAP MFA enabled",
+          "value": "cubeMFAenabled",
+          "formatter": "bool"
+        }
+      ],
+      "where": "$_.state -eq 'enabled'",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "state"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=displayName eq 'All apps: Require MFA outside the office'"
+    },
+    {
+      "name": "DetectFortiGateSAML",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Fortigate SAML connection",
+          "value": "DetectFortiGateSAML",
+          "formatter": "bool"
+        }
+      ],
+      "desc": "Looks for a Fortigate SSLVPN service principle",
+      "where": "$_.displayName -ne $null",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "displayName"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/applications?$filter=startswith(displayName,'Fortigate')"
+    },
+    {
+      "name": "OAuthAppConsent",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Disable user app registration",
+          "value": "OAuthAppConsent",
+          "formatter": "bool"
+        }
+      ],
+      "desc": "Disables users from being able to consent to applications",
+      "where": "'ManagePermissionGrantsForSelf.microsoft-user-default-legacy' -notin $_.defaultuserrolepermissions.permissionGrantPoliciesAssigned",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "defaultuserrolepermissions"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/authorizationPolicy?$select=defaultUserRolePermissions"
+    },
+    {
+      "name": "UnifiedAuditLog",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Unified Audit Log",
+          "value": "UnifiedAuditLog",
+          "formatter": "bool"
+        }
+      ],
+      "desc": "Enables the Unified Audit Log for tracking and auditing activities.",
+      "StoreAs": "bool",
+      "API": "Exchange",
+      "ExtractFields": [
+        "UnifiedAuditLogIngestionEnabled"
+      ],
+      "Command": "Get-AdminAuditLogConfig"
+    },
+    {
+      "name": "MFANudgeState",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "MFA Registration Campaign Disabled",
+          "value": "MFANudgeState",
+          "formatter": "bool"
+        }
+      ],
+      "desc": "Sets the state of the registration campaign for the tenant",
+      "where": "$_.registrationEnforcement.authenticationMethodsRegistrationCampaign.state -eq 'Disabled'",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "registrationEnforcement"
+      ],
+      "URL": "https://graph.microsoft.com/beta/policies/authenticationMethodsPolicy"
+    },
+    {
+      "name": "SecureDefaultState",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Security Defaults State Disabled",
+          "value": "SecureDefaultState",
+          "formatter": "reverseBool"
+        }
+      ],
+      "desc": "Enables security defaults for the tenant, for newer tenants this is enabled by default.",
+      "where": "",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "isEnabled"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/identitySecurityDefaultsEnforcementPolicy"
+    },
+    {
+      "name": "allowedToCreateTenants",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Disabled tenant creation",
+          "value": "allowedToCreateTenants",
+          "formatter": "bool"
+        }
+      ],
+      "where": "$_.defaultUserRolePermissions.allowedToCreateTenants -eq $false",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "defaultUserRolePermissions"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/authorizationPolicy"
+    },
+    {
+      "name": "allowedToCreateSecurityGroups",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Disabled SG creation",
+          "value": "allowedToCreateSecurityGroups",
+          "formatter": "bool"
+        }
+      ],
+      "where": "$_.defaultUserRolePermissions.allowedToCreateSecurityGroups -eq $false",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "defaultUserRolePermissions"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/authorizationPolicy"
+    },
+    {
+      "name": "adminConsentRequestPolicy",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Enable admin consent request",
+          "value": "adminConsentRequestPolicy",
+          "formatter": "bool"
+        }
+      ],
+      "where": "$_.isEnabled -eq $true",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "isEnabled"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/adminConsentRequestPolicy"
+    }
+  ]
+}
