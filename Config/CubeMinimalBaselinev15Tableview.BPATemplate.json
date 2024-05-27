@@ -188,6 +188,24 @@
       "URL": "https://graph.microsoft.com/v1.0/policies/authorizationPolicy"
     },
     {
+      "name": "allowedToCreateM365Groups",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Disabled M365 group creation",
+          "value": "allowedToCreateM365Groups",
+          "formatter": "bool"
+        }
+      ],
+      "where": "($_.value.displayName -eq 'Group.Unified' | Where -Property name -eq EnableGroupCreation).value -eq $false",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "value"
+      ],
+      "URL": "https://graph.microsoft.com/beta/settings"
+    },
+    {
       "name": "adminConsentRequestPolicy",
       "UseExistingInfo": false,
       "FrontendFields": [
