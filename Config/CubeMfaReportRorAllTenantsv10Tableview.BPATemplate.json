@@ -92,7 +92,7 @@
       "ExtractFields": [
         "state"
       ],
-      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=displayName eq 'Multifactor authentication for admins accessing Microsoft Admin Portals'"
+      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=displayName eq 'Microsoft-managed: Multifactor authentication for admins accessing Microsoft Admin Portals'"
     }
   ]
 }
