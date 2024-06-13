@@ -1,0 +1,98 @@
+{
+  "name": "Cube MFA report for all tenants v1.0 - table view",
+  "style": "Table",
+  "Fields": [
+    {
+      "name": "cubeCAPexist",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Cube CAP rules exist",
+          "value": "cubeCAPexist",
+          "formatter": "bool"
+        }
+      ],
+      "where": "$_.displayName -ne $null",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "displayName"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=displayName eq 'All apps: Require MFA outside the office'"
+    },
+    {
+      "name": "cubeMFAenabled",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Cube CAP MFA enabled",
+          "value": "cubeMFAenabled",
+          "formatter": "bool"
+        }
+      ],
+      "where": "$_.state -eq 'enabled'",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "state"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=displayName eq 'All apps: Require MFA outside the office'"
+    },
+    {
+      "name": "SecureDefaultState",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Security Defaults State Disabled",
+          "value": "SecureDefaultState",
+          "formatter": "reverseBool"
+        }
+      ],
+      "desc": "Enables security defaults for the tenant, for newer tenants this is enabled by default.",
+      "where": "",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "isEnabled"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/identitySecurityDefaultsEnforcementPolicy"
+    },
+    {
+      "name": "DetectFortiGateSAML",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Fortigate SAML connection",
+          "value": "DetectFortiGateSAML",
+          "formatter": "bool"
+        }
+      ],
+      "desc": "Looks for a Fortigate SSLVPN service principle",
+      "where": "$_.displayName -ne $null",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "displayName"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/applications?$filter=startswith(displayName,'Fortigate')"
+    },
+    {
+      "name": "MSCAPdisabled",
+      "UseExistingInfo": false,
+      "FrontendFields": [
+        {
+          "name": "Miscrosoft CAP disabled",
+          "value": "MSCAPdisabled",
+          "formatter": "bool"
+        }
+      ],
+      "where": "$_.state -eq 'disabled'",
+      "StoreAs": "bool",
+      "API": "Graph",
+      "ExtractFields": [
+        "state"
+      ],
+      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=displayName eq 'Multifactor authentication for admins accessing Microsoft Admin Portals'"
+    }
+  ]
+}
