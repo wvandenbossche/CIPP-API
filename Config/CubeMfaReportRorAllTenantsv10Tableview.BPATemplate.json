@@ -86,7 +86,7 @@
           "formatter": "bool"
         }
       ],
-      "where": "$_.displayName -eq $null -or ($_.displayName -ne $null -and ($_.state -eq 'disabled'))",
+      "where": "$_.displayName -ne $null -or ($_.state -eq 'disabled')",
       "StoreAs": "bool",
       "API": "Graph",
       "ExtractFields": [
