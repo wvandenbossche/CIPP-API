@@ -18,7 +18,7 @@
       "ExtractFields": [
         "displayName"
       ],
-      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=displayName eq 'All apps: Require MFA outside the office'"
+      "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=startswith(displayName, 'All apps: Require MFA')"
     },
     {
       "name": "cubeMFAenabled",
