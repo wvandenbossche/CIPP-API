@@ -83,10 +83,10 @@
         {
           "name": "Miscrosoft CAP disabled",
           "value": "MSCAPdisabled",
-          "formatter": "bool"
+          "formatter": "reverseBool"
         }
       ],
-      "where": "$_ -eq $null -or ($_.state -eq 'disabled')",
+      "where": "$_.state -eq 'enabled'",
       "StoreAs": "bool",
       "API": "Graph",
       "ExtractFields": [
