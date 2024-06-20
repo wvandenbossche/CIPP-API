@@ -86,11 +86,10 @@
           "formatter": "bool"
         }
       ],
-      "where": "$_.displayName -ne $null -or ($_.state -eq 'disabled')",
+      "where": "$_.state -eq $null -or ($_.state -eq 'disabled')",
       "StoreAs": "bool",
       "API": "Graph",
       "ExtractFields": [
-        "displayName",
         "state"
       ],
       "URL": "https://graph.microsoft.com/v1.0/policies/conditionalAccessPolicies?$filter=displayName eq 'Microsoft-managed: Multifactor authentication for admins accessing Microsoft Admin Portals'"
